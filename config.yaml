@@ -1,0 +1,35 @@
+print-progress: false
+concurrent: 50
+media-concurrent: 20
+speed-concurrent: 15
+shuffle-test-order: true
+check-interval: 120
+success-limit: 30 # 筛够约 30 个可用美区 Gemini 节点即可结束，跑得更快
+timeout: 5000
+alive-test-url: http://gstatic.com/generate_204
+speed-test-url: https://github.com/AaronFeng753/Waifu2x-Extension-GUI/releases/download/v2.21.12/Waifu2x-Extension-GUI-v2.21.12-Portable.7z
+min-speed: 512 # 最低下载速度 512 KB/s，过滤龟速节点
+download-timeout: 8
+download-mb: 10
+rename-node: true # 按 IP 自动重命名（带国家/地区标识）
+media-check: true # 开启解锁检测
+media-check-timeout: 5
+platforms: # 只检测 IP 风险与 Gemini，大幅缩短云端耗时
+  - iprisk
+  - gemini
+# 注意：filter 列表内多项是“或”关系，必须写成一条正则才能同时满足“美国 + 解锁Gemini”
+filter:
+  - "(?i)(美国|🇺🇸|US).*GM"
+enable-web-ui: false
+sub-store-port: "" # 关闭内置 sub-store，节省云端资源
+save-method: local
+output-dir: "./output"
+callback-script: "./done.sh" # 检测完成后自动退出进程，避免 Actions 一直挂起
+# 聚合公开订阅源（可随时增删）
+sub-urls-remote:
+  - "https://raw.githubusercontent.com/beck-8/sub-urls/refs/heads/main/%E5%B0%8F%E8%80%8C%E7%BE%8E.txt"
+sub-urls:
+  - "https://raw.githubusercontent.com/PuddinCat/BestClash/refs/heads/main/proxies.yaml"
+  - "https://raw.githubusercontent.com/chengaopan/AutoMergePublicNodes/master/list.yml"
+  - "https://raw.githubusercontent.com/peasoft/NoMoreWalls/master/snippets/nodes.meta.yml"
+  - "https://raw.githubusercontent.com/Barabama/FreeNodes/main/nodes/clashmeta.txt"
