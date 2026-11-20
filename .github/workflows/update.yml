@@ -15,6 +15,16 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v4
 
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install pyyaml
+
       - name: Download subs-check
         run: |
           curl -fsSL -o subs-check.tar.gz "https://github.com/beck-8/subs-check/releases/latest/download/subs-check_Linux_x86_64.tar.gz"
@@ -27,13 +37,17 @@ jobs:
           # 最长运行 20 分钟兜底；正常跑完会由 done.sh 提前退出
           timeout 20m ./subs-check -f config.yaml || true
 
-      - name: Commit updated subscription
+      - name: Build full Clash configuration for mobile clients
+        run: |
+          python build_full_clash.py
+
+      - name: Commit updated subscriptions
         run: |
           if [ -s output/all.yaml ]; then
             git config user.name "github-actions[bot]"
             git config user.email "github-actions[bot]@users.noreply.github.com"
-            git add output/all.yaml
-            git diff --cached --quiet || git commit -m "chore: update US Gemini nodes $(date -u +'%Y-%m-%d %H:%M UTC')"
+            git add output/all.yaml output/clash.yaml
+            git diff --cached --quiet || git commit -m "chore: update US Gemini nodes and clash profile $(date -u +'%Y-%m-%d %H:%M UTC')"
             git push
           else
             echo "output/all.yaml is empty, keeping previous snapshot."
