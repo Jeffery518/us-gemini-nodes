@@ -1,11 +1,12 @@
-# 全球高可用节点自动测速与分流订阅池 (Multi-Country Gemini Auto-Nodes)
+# 🌐 Global-Gemini-Nodes | 全球多国高可用节点池
 
 <div align="center">
 
-![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/Jeffery518/us-gemini-nodes/update.yml?branch=main&label=%E4%BA%91%E7%AB%AF%E6%B5%8B%E9%80%9F%E7%8A%B6%E6%80%81&style=flat-square)
-![更新频率](https://img.shields.io/badge/%E6%9B%B4%E6%96%B0%E9%A2%91%E7%8E%87-%E6%AF%8F%202%20%E5%B0%8F%E6%97%B6-blue?style=flat-square)
-[![订阅访问人次](https://komarev.com/ghpvc/?username=Jeffery518-us-gemini-nodes&label=%E8%AE%A2%E9%98%85%E8%AE%BF%E9%97%AE%E4%BA%BA%E6%AC%A1&color=007ec6&style=flat-square)](https://github.com/Jeffery518/us-gemini-nodes)
-[![Hits](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2FJeffery518%2Fus-gemini-nodes&count_bg=%2379C83D&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=%E8%AE%A2%E9%98%85%E6%80%BB%E4%BA%BA%E6%AC%A1&edge_flat=false)](https://hits.seeyoufarm.com)
+![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/Jeffery518/us-gemini-nodes/update.yml?branch=main&label=%E4%BA%91%E7%AB%AF%E6%B5%8B%E9%80%9F&style=flat-square)
+![更新频率](https://img.shields.io/badge/%E6%9B%B4%E6%96%B0%E9%A2%91%E7%8E%87-%E6%AF%8F2%E5%B0%8F%E6%97%B6-blue?style=flat-square)
+![覆盖国家](https://img.shields.io/badge/%E8%A6%86%E7%9B%96%E5%9C%B0%E5%8C%BA-%E7%BE%8E%20%7C%20%E6%96%B0%20%7C%20%E6%97%A5%20%7C%20%E6%B8%AF%20%7C%20%E5%8F%B0%20%7C%20%E8%8B%B1-orange?style=flat-square)
+![Gemini解锁](https://img.shields.io/badge/Gemini%20%2F%20AI-%E4%B8%93%E5%B1%9E%E8%A7%A3%E9%94%81-blueviolet?style=flat-square)
+[![Subscribers](https://komarev.com/ghpvc/?username=Jeffery518-us-gemini-nodes&label=SUBSCRIBERS&color=007ec6&style=flat-square)](https://github.com/Jeffery518/us-gemini-nodes)
 ![开源协议](https://img.shields.io/badge/License-MIT-green?style=flat-square)
 
 <p>基于 <b>GitHub Actions</b> + <b>subs-check</b> 云端全自动化构建的高可用节点订阅池。<br>每 2 小时自动抓取全球数百个上游公开源、高并发测速清洗、淘汰拥塞与死节点，专为 <b>Google Gemini、Antigravity</b> 与日常网络加速打造。</p>
@@ -18,7 +19,7 @@
 
 * ⚡ **超高新鲜度**：云端定时器每 **2 小时** 自动抓取并重测，彻底解决公开节点易死、失效堆积的问题。
 * 🌍 **按国家专属自动优选**：内置分类引擎，支持 **「🇺🇸 美国-自动优选」**、**「🇸🇬 新加坡-自动优选」**、**「🇯🇵 日本-自动优选」**、**「🇭🇰 香港-自动优选」**、**「🇹🇼 台湾-自动优选」** 等独立测速组。
-* 🤖 **Gemini / AI 专属专线**：对所有节点进行 IP 风险与 Gemini 解锁检测，并在分流规则中将 Antigravity、Gemini 域名精准导流至解锁节点。
+* 🤖 **Gemini / AI 纯净专线**：对所有节点进行严格前缀识别与 Gemini 解锁检测，专线仅收录 100% 纯正美区解锁节点。
 * 🛡️ **60s 故障无感漂移**：策略组健康检测设为 60 秒。使用任意「自动优选」组时，一旦某个节点暴毙，客户端内核在 60 秒内静默切换到下一个最快可用节点，完全无感知。
 * 📱 **全平台开箱即用**：自动生成手机端与电脑端适用的标准完整配置（包含策略组与分流规则），导入即用。
 
@@ -130,14 +131,6 @@ function main(config) {
    * 选择 **「🚀 全球自动优选」** 或 **「🇺🇸 美国-自动优选」** 等自动组，客户端底层内核会在 60 秒内自动探活并漂移至当前最快的活着节点，实现 100% 无感换线。
 2. **觉得网络卡顿或节点变灰时**：
    * 在订阅卡片上**手动点击一次刷新图标**，即可立即拉取云端最新生成的节点名单。
-
----
-
-### 📊 访问量与使用统计
-
-本项目订阅链接自带实时访问统计，徽章数据由第三方计数服务动态统计：
-* **当前总使用/访问人次**：可在上方页面顶部实时查看 `订阅访问人次` 徽章。
-* 统计数据每次客户端拉取订阅或网页访问均会自动自增计次。
 
 ---
 
