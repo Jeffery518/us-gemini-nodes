@@ -2,7 +2,7 @@ name: Update US Gemini Nodes
 
 on:
   schedule:
-    - cron: '0 */6 * * *' # 每 6 小时自动跑一次（UTC 时间）
+    - cron: '0 */2 * * *' # 缩短至每 2 小时自动运行一次，保证节点超高新鲜度，杜绝长期死节点
   workflow_dispatch: # 允许在 Actions 页面手动点按钮立即运行
 
 permissions:
