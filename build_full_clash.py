@@ -2,6 +2,25 @@ import re
 import sys
 import yaml
 
+def get_node_region(name: str) -> str:
+    # 关键修复：只取第一段前缀，排除尾部 |GM-US 导致加拿大、德国、墨西哥等节点被误判为美国
+    head = name.split("|")[0].strip()
+    if re.search(r"^(🇺🇸|US_)|美国", head):
+        return "US"
+    if re.search(r"^(🇸🇬|SG_)|新加坡|狮城", head):
+        return "SG"
+    if re.search(r"^(🇯🇵|JP_)|日本|东京|大阪", head):
+        return "JP"
+    if re.search(r"^(🇭🇰|HK_)|香港", head):
+        return "HK"
+    if re.search(r"^(🇹🇼|TW_)|台湾", head):
+        return "TW"
+    if re.search(r"^(🇬🇧|GB_|UK_)|英国|伦敦", head):
+        return "UK"
+    if re.search(r"^(🇰🇷|KR_)|韩国|首尔", head):
+        return "KR"
+    return "OTHER"
+
 def main():
     try:
         with open("output/all.yaml", "r", encoding="utf-8") as f:
@@ -17,21 +36,19 @@ def main():
 
     proxy_names = [p["name"] for p in proxies if isinstance(p, dict) and "name" in p]
 
-    # 按国家与地区进行分类
-    us_nodes = [n for n in proxy_names if re.search(r"(?i)(美国|🇺🇸|US|United States)", n)]
-    sg_nodes = [n for n in proxy_names if re.search(r"(?i)(新加坡|🇸🇬|SG|Singapore|狮城)", n)]
-    jp_nodes = [n for n in proxy_names if re.search(r"(?i)(日本|🇯🇵|JP|Japan|东京|大阪)", n)]
-    hk_nodes = [n for n in proxy_names if re.search(r"(?i)(香港|🇭🇰|HK|HongKong)", n)]
-    tw_nodes = [n for n in proxy_names if re.search(r"(?i)(台湾|🇹🇼|TW|Taiwan|台北)", n)]
-    uk_nodes = [n for n in proxy_names if re.search(r"(?i)(英国|🇬🇧|UK|Great Britain|伦敦)", n)]
-    
-    # Gemini 解锁节点
-    gm_nodes = [n for n in proxy_names if re.search(r"(?i)(GM)", n)]
+    # 精准按国家前缀分类，严防尾部 GM-US 标签串味
+    us_nodes = [n for n in proxy_names if get_node_region(n) == "US"]
+    sg_nodes = [n for n in proxy_names if get_node_region(n) == "SG"]
+    jp_nodes = [n for n in proxy_names if get_node_region(n) == "JP"]
+    hk_nodes = [n for n in proxy_names if get_node_region(n) == "HK"]
+    tw_nodes = [n for n in proxy_names if get_node_region(n) == "TW"]
+    uk_nodes = [n for n in proxy_names if get_node_region(n) == "UK"]
+    kr_nodes = [n for n in proxy_names if get_node_region(n) == "KR"]
 
-    # 构建策略组
-    proxy_groups = []
+    # Gemini 专属节点：100% 纯美国且通过 Gemini 解锁认证的节点
+    gemini_us_nodes = [n for n in us_nodes if "GM" in n]
+    gemini_final_nodes = gemini_us_nodes if gemini_us_nodes else us_nodes
 
-    # 1. 自动选择组定义列表
     auto_groups = []
 
     # 全球自动优选
@@ -44,7 +61,7 @@ def main():
         "proxies": proxy_names,
     })
 
-    # 各国自动优选组（仅在存在该国节点时加入）
+    # 各国自动优选组（100% 纯净该国节点）
     country_definitions = [
         ("🇺🇸 美国-自动优选", us_nodes),
         ("🇸🇬 新加坡-自动优选", sg_nodes),
@@ -52,6 +69,7 @@ def main():
         ("🇭🇰 香港-自动优选", hk_nodes),
         ("🇹🇼 台湾-自动优选", tw_nodes),
         ("🇬🇧 英国-自动优选", uk_nodes),
+        ("🇰🇷 韩国-自动优选", kr_nodes),
     ]
 
     available_country_group_names = []
@@ -67,14 +85,13 @@ def main():
             })
             available_country_group_names.append(group_name)
 
-    # Gemini 专属容灾组（优先走解锁 Gemini 的节点或美区/新加坡优选）
-    gemini_proxies = gm_nodes if gm_nodes else (us_nodes if us_nodes else proxy_names)
+    # Gemini 专属专线：100% 纯美区 Gemini 解锁节点
     gemini_group = {
         "name": "🤖 Gemini-专属专线",
         "type": "fallback",
         "url": "https://www.gstatic.com/generate_204",
         "interval": 60,
-        "proxies": [g for g in ["🇺🇸 美国-自动优选", "🇸🇬 新加坡-自动优选", "🇯🇵 日本-自动优选"] if g in available_country_group_names] + gemini_proxies,
+        "proxies": ["🇺🇸 美国-自动优选"] + gemini_final_nodes,
     }
 
     # 顶层主控制组：节点选择
@@ -117,9 +134,9 @@ def main():
 
     with open("output/clash.yaml", "w", encoding="utf-8") as f:
         yaml.dump(full_config, f, allow_unicode=True, sort_keys=False)
-    
+
     print(f"Successfully generated output/clash.yaml with {len(proxy_names)} nodes!")
-    print(f"Countries detected - US: {len(us_nodes)}, SG: {len(sg_nodes)}, JP: {len(jp_nodes)}, HK: {len(hk_nodes)}, TW: {len(tw_nodes)}, UK: {len(uk_nodes)}")
+    print(f"Pure US: {len(us_nodes)} (Gemini Unlocked: {len(gemini_us_nodes)}), SG: {len(sg_nodes)}, JP: {len(jp_nodes)}, HK: {len(hk_nodes)}, TW: {len(tw_nodes)}, UK: {len(uk_nodes)}, KR: {len(kr_nodes)}")
 
 if __name__ == "__main__":
     main()

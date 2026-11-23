@@ -1263,6 +1263,7 @@ proxy-groups:
   - 🇭🇰 香港-自动优选
   - 🇹🇼 台湾-自动优选
   - 🇬🇧 英国-自动优选
+  - 🇰🇷 韩国-自动优选
   - 🤖 Gemini-专属专线
   - DIRECT
   - 🇺🇸US_82|1.6MB/s|12%|GM-US
@@ -1495,8 +1496,6 @@ proxy-groups:
   proxies:
   - 🇺🇸US_82|1.6MB/s|12%|GM-US
   - 🇺🇸US_83|36.1MB/s|0%|GM-US
-  - 🇩🇪DE_16|2.9MB/s|0%|GM-US
-  - 🇨🇦CA_8|6.1MB/s|33%|GM-US|P002-260618
   - 🇺🇸US_84|6.1MB/s|0%
   - 🇺🇸US_85|15.3MB/s|80%|GM-US
   - 🇺🇸US_86|5.7MB/s|50%|GM-US
@@ -1508,7 +1507,6 @@ proxy-groups:
   - 🇺🇸US_92|6.0MB/s|73%|GM-US
   - 🇺🇸US_93|2.8MB/s|84%|GM-US
   - 🇺🇸US_94|13.5MB/s|33%|GM-US
-  - 🇲🇽MX_3|2.6MB/s|0%|GM-US
   - 🇺🇸US_95|15.1MB/s|0%
   - 🇺🇸US_96|6.2MB/s|100%
   - 🇺🇸US_97|4.8MB/s|13%|GM-US
@@ -1517,8 +1515,6 @@ proxy-groups:
   - 🇺🇸US_100|5.1MB/s|76%|GM-US
   - 🇺🇸US_101|4.9MB/s|33%
   - 🇺🇸US_102|16.2MB/s|50%
-  - 🇧🇷BR_3|1.8MB/s|0%|GM-US
-  - 🇳🇱NL_38|3.0MB/s|20%|GM-US
   - 🇺🇸US_103|15.5MB/s|0%
   - 🇺🇸US_104|18.4MB/s|67%
   - 🇺🇸US_105|13.8MB/s|80%|GM-US
@@ -1527,7 +1523,6 @@ proxy-groups:
   - 🇺🇸US_108|19.1MB/s|33%
   - 🇺🇸US_109|1.4MB/s|3%|GM-US
   - 🇺🇸US_110|6.9MB/s|67%
-  - 🇳🇱NL_39|1.6MB/s|17%|GM-US
   - 🇺🇸US_111|5.5MB/s|0%
   - 🇺🇸US_112|15.0MB/s|75%|GM-US
   - 🇺🇸US_113|5.3MB/s|65%|GM-US
@@ -1535,17 +1530,14 @@ proxy-groups:
   - 🇺🇸US_115|5.1MB/s|83%|GM-US
   - 🇺🇸US_116|16.0MB/s|35%|GM-US
   - 🇺🇸US_117|5.2MB/s|76%|GM-US
-  - 🇲🇽MX_4|2.7MB/s|0%|GM-US
   - 🇺🇸US_118|6.0MB/s|67%|GM-US
   - 🇺🇸US_119|5.4MB/s|68%|GM-US
-  - 🇳🇱NL_40|2.6MB/s|17%|GM-US
   - 🇺🇸US_120|2.7MB/s|80%|GM-US
   - 🇺🇸US_121|6.0MB/s|75%|GM-US
   - 🇺🇸US_122|6.1MB/s|13%|GM-US
   - 🇺🇸US_123|18.9MB/s|47%
   - 🇺🇸US_124|5.8MB/s|0%|GM-US
   - 🇺🇸US_125|19.3MB/s|0%|GM-US
-  - 🇱🇻LV_5|2.5MB/s|0%|GM-US
   - 🇺🇸US_126|1.5MB/s|13%|GM-US
   - 🇺🇸US_127|2.4MB/s|13%|GM-US
   - 🇺🇸US_128|1.2MB/s|13%|GM-US
@@ -1560,8 +1552,6 @@ proxy-groups:
   - 🇺🇸US_137|1.6MB/s|44%|GM-US
   - 🇺🇸US_138|5.1MB/s|GM-US
   - 🇺🇸US_139|4.6MB/s|0%|GM-US
-  - 🇨🇦CA_9|2.7MB/s|32%|GM-US
-  - 🇨🇦CA_10|2.7MB/s|32%|GM-US
   - 🇺🇸US_140|5.5MB/s|83%|GM-US|P002-260618
   - 🇺🇸US_141|5.5MB/s|79%|GM-US|P002-260618
   - 🇺🇸US_142|1.7MB/s|40%|GM-US
@@ -1624,88 +1614,68 @@ proxy-groups:
   - 🇬🇧GB_8|2.7MB/s|69%|GM-GB|R002-260618
   - 🇬🇧GB_9|2.9MB/s|53%
   - 🇬🇧GB_10|2.0MB/s|0%|GM-GB|R002-260618
+- name: 🇰🇷 韩国-自动优选
+  type: url-test
+  url: https://www.gstatic.com/generate_204
+  interval: 60
+  tolerance: 50
+  proxies:
+  - 🇰🇷KR_14|2.5MB/s|4%|GM-KR
+  - 🇰🇷KR_15|1.8MB/s|4%|GM-KR
+  - 🇰🇷KR_16|2.4MB/s|4%|GM-KR
+  - 🇰🇷KR_17|1.8MB/s|4%|GM-KR
+  - 🇰🇷KR_18|1.5MB/s|1%|GM-KR
+  - 🇰🇷KR_19|2.4MB/s|4%|GM-KR
+  - 🇰🇷KR_20|2.1MB/s|1%|GM-KR
 - name: 🤖 Gemini-专属专线
   type: fallback
   url: https://www.gstatic.com/generate_204
   interval: 60
   proxies:
   - 🇺🇸 美国-自动优选
-  - 🇸🇬 新加坡-自动优选
-  - 🇯🇵 日本-自动优选
   - 🇺🇸US_82|1.6MB/s|12%|GM-US
-  - 🇸🇬SG_14|1.3MB/s|0%|GM-SG
-  - 🇯🇵JP_8|2.5MB/s|20%|GM-JP
   - 🇺🇸US_83|36.1MB/s|0%|GM-US
-  - 🇩🇪DE_16|2.9MB/s|0%|GM-US
-  - 🇨🇦CA_8|6.1MB/s|33%|GM-US|P002-260618
-  - 🇹🇼TW_6|1.5MB/s|0%|GM-TW
   - 🇺🇸US_85|15.3MB/s|80%|GM-US
   - 🇺🇸US_86|5.7MB/s|50%|GM-US
   - 🇺🇸US_88|5.6MB/s|40%|GM-US
   - 🇺🇸US_89|2.6MB/s|50%|GM-US
-  - 🇸🇬SG_15|1.8MB/s|27%|GM-SG
   - 🇺🇸US_90|5.2MB/s|67%|GM-US
   - 🇺🇸US_91|15.2MB/s|40%|GM-US
   - 🇺🇸US_92|6.0MB/s|73%|GM-US
   - 🇺🇸US_93|2.8MB/s|84%|GM-US
   - 🇺🇸US_94|13.5MB/s|33%|GM-US
-  - 🇲🇽MX_3|2.6MB/s|0%|GM-US
   - 🇺🇸US_97|4.8MB/s|13%|GM-US
   - 🇺🇸US_98|1.8MB/s|5%|GM-US
   - 🇺🇸US_99|5.7MB/s|0%|GM-US
   - 🇺🇸US_100|5.1MB/s|76%|GM-US
-  - 🇧🇷BR_3|1.8MB/s|0%|GM-US
-  - 🇳🇱NL_38|3.0MB/s|20%|GM-US
   - 🇺🇸US_105|13.8MB/s|80%|GM-US
   - 🇺🇸US_106|1.7MB/s|100%|GM-US
   - 🇺🇸US_107|5.8MB/s|76%|GM-US
   - 🇺🇸US_109|1.4MB/s|3%|GM-US
-  - 🇳🇱NL_39|1.6MB/s|17%|GM-US
   - 🇺🇸US_112|15.0MB/s|75%|GM-US
   - 🇺🇸US_113|5.3MB/s|65%|GM-US
   - 🇺🇸US_115|5.1MB/s|83%|GM-US
   - 🇺🇸US_116|16.0MB/s|35%|GM-US
   - 🇺🇸US_117|5.2MB/s|76%|GM-US
-  - 🇲🇽MX_4|2.7MB/s|0%|GM-US
   - 🇺🇸US_118|6.0MB/s|67%|GM-US
-  - 🇹🇼TW_7|2.3MB/s|0%|GM-TW
   - 🇺🇸US_119|5.4MB/s|68%|GM-US
-  - 🇳🇱NL_40|2.6MB/s|17%|GM-US
-  - 🇹🇼TW_8|2.3MB/s|0%|GM-TW
   - 🇺🇸US_120|2.7MB/s|80%|GM-US
   - 🇺🇸US_121|6.0MB/s|75%|GM-US
   - 🇺🇸US_122|6.1MB/s|13%|GM-US
-  - 🇰🇷KR_14|2.5MB/s|4%|GM-KR
   - 🇺🇸US_124|5.8MB/s|0%|GM-US
   - 🇺🇸US_125|19.3MB/s|0%|GM-US
-  - 🇹🇼TW_9|2.3MB/s|0%|GM-TW
-  - 🇰🇷KR_15|1.8MB/s|4%|GM-KR
-  - 🇱🇻LV_5|2.5MB/s|0%|GM-US
   - 🇺🇸US_126|1.5MB/s|13%|GM-US
-  - 🇸🇬SG_17|1.1MB/s|1%|GM-SG
   - 🇺🇸US_127|2.4MB/s|13%|GM-US
-  - 🇸🇬SG_18|2.3MB/s|1%|GM-SG
-  - 🇰🇷KR_16|2.4MB/s|4%|GM-KR
-  - 🇰🇷KR_17|1.8MB/s|4%|GM-KR
-  - 🇰🇷KR_18|1.5MB/s|1%|GM-KR
   - 🇺🇸US_128|1.2MB/s|13%|GM-US
   - 🇺🇸US_129|7.2MB/s|13%|GM-US
-  - 🇰🇷KR_19|2.4MB/s|4%|GM-KR
-  - 🇰🇷KR_20|2.1MB/s|1%|GM-KR
-  - 🇬🇧GB_8|2.7MB/s|69%|GM-GB|R002-260618
   - 🇺🇸US_132|7.1MB/s|13%|GM-US
   - 🇺🇸US_133|2.6MB/s|40%|GM-US
   - 🇺🇸US_136|1.5MB/s|20%|GM-US
-  - 🇯🇵JP_10|1.8MB/s|1%|GM-JP
   - 🇺🇸US_137|1.6MB/s|44%|GM-US
   - 🇺🇸US_138|5.1MB/s|GM-US
   - 🇺🇸US_139|4.6MB/s|0%|GM-US
-  - 🇨🇦CA_9|2.7MB/s|32%|GM-US
-  - 🇨🇦CA_10|2.7MB/s|32%|GM-US
-  - 🇬🇧GB_10|2.0MB/s|0%|GM-GB|R002-260618
   - 🇺🇸US_140|5.5MB/s|83%|GM-US|P002-260618
   - 🇺🇸US_141|5.5MB/s|79%|GM-US|P002-260618
-  - 🇸🇬SG_19|1.7MB/s|27%|GM-SG
   - 🇺🇸US_142|1.7MB/s|40%|GM-US
   - 🇺🇸US_143|5.3MB/s|67%|GM-EG
 rules:
