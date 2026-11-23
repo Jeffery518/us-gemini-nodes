@@ -4,7 +4,7 @@ media-concurrent: 20
 speed-concurrent: 15
 shuffle-test-order: true
 check-interval: 120
-success-limit: 60 # 提速并筛选 60 个优质节点
+success-limit: 100 # 扩大筛选池至 100 个全球优质节点
 timeout: 2500 # 云端握手超时缩短至 2.5 秒，严酷淘汰高延迟与濒死节点
 alive-test-url: https://www.gstatic.com/generate_204 # 改用带 TLS 握手的 HTTPS 端点检测
 speed-test-url: https://github.com/AaronFeng753/Waifu2x-Extension-GUI/releases/download/v2.21.12/Waifu2x-Extension-GUI-v2.21.12-Portable.7z
@@ -14,12 +14,12 @@ download-mb: 10
 rename-node: true # 按 IP 自动重命名（带国家/地区标识）
 media-check: true # 开启解锁检测
 media-check-timeout: 4
-platforms: # 只检测 IP 风险与 Gemini，大幅缩短云端耗时
+platforms: # 检测 IP 风险与 Gemini 解锁状态
   - iprisk
   - gemini
-# 注意：filter 列表内多项是“或”关系，必须写成一条正则才能同时满足“美国 + 解锁Gemini”
+# 全球主流地区优质节点覆盖（美国、新加坡、日本、香港、台湾、英国、韩国等）
 filter:
-  - "(?i)(美国|🇺🇸|US).*GM"
+  - "(?i)(美国|🇺🇸|US|新加坡|🇸🇬|SG|日本|🇯🇵|JP|香港|🇭🇰|HK|台湾|🇹🇼|TW|英国|🇬🇧|UK|韩国|🇰🇷|KR)"
 enable-web-ui: false
 sub-store-port: "" # 关闭内置 sub-store，节省云端资源
 save-method: local

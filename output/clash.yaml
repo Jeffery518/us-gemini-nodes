@@ -765,8 +765,9 @@ proxy-groups:
 - name: 节点选择
   type: select
   proxies:
-  - 自动优选
-  - Gemini专线
+  - 🚀 全球自动优选
+  - 🇺🇸 美国-自动优选
+  - 🤖 Gemini-专属专线
   - DIRECT
   - 🇺🇸US_111|6.6MB/s|50%|GM-US
   - 🇺🇸US_112|6.5MB/s|50%|GM-US
@@ -831,12 +832,12 @@ proxy-groups:
   - 🇺🇸US_171|5.7MB/s|0%|GM-US
   - 🇺🇸US_172|17.1MB/s|13%|GM-US
   - 🇺🇸US_173|1.8MB/s|53%|GM-US
-- name: 自动优选
+- name: 🚀 全球自动优选
   type: url-test
   url: https://www.gstatic.com/generate_204
   interval: 60
   tolerance: 50
-  proxies: &id001
+  proxies:
   - 🇺🇸US_111|6.6MB/s|50%|GM-US
   - 🇺🇸US_112|6.5MB/s|50%|GM-US
   - 🇺🇸US_113|18.1MB/s|41%|GM-US
@@ -900,18 +901,151 @@ proxy-groups:
   - 🇺🇸US_171|5.7MB/s|0%|GM-US
   - 🇺🇸US_172|17.1MB/s|13%|GM-US
   - 🇺🇸US_173|1.8MB/s|53%|GM-US
-- name: Gemini专线
+- name: 🇺🇸 美国-自动优选
+  type: url-test
+  url: https://www.gstatic.com/generate_204
+  interval: 60
+  tolerance: 50
+  proxies:
+  - 🇺🇸US_111|6.6MB/s|50%|GM-US
+  - 🇺🇸US_112|6.5MB/s|50%|GM-US
+  - 🇺🇸US_113|18.1MB/s|41%|GM-US
+  - 🇺🇸US_114|17.5MB/s|50%|GM-US
+  - 🇺🇸US_115|2.5MB/s|100%|GM-US
+  - 🇺🇸US_116|3.9MB/s|3%|GM-US
+  - 🇺🇸US_117|15.2MB/s|80%|GM-US
+  - 🇺🇸US_118|2.5MB/s|64%|GM-US
+  - 🇺🇸US_119|2.6MB/s|50%|GM-US
+  - 🇺🇸US_120|6.3MB/s|13%|GM-US
+  - 🇺🇸US_121|5.2MB/s|13%|GM-US
+  - 🇺🇸US_122|5.5MB/s|67%|GM-US
+  - 🇺🇸US_123|5.5MB/s|68%|GM-US
+  - 🇺🇸US_124|5.8MB/s|89%|GM-US
+  - 🇺🇸US_125|5.2MB/s|77%|GM-US
+  - 🇺🇸US_126|4.8MB/s|90%|GM-US
+  - 🇺🇸US_127|5.1MB/s|13%|GM-US
+  - 🇺🇸US_128|4.0MB/s|47%|GM-US
+  - 🇺🇸US_129|2.9MB/s|13%|GM-US
+  - 🇺🇸US_130|4.1MB/s|60%|GM-US
+  - 🇺🇸US_131|12.0MB/s|71%|GM-US
+  - 🇺🇸US_132|5.4MB/s|89%|GM-US
+  - 🇺🇸US_133|4.9MB/s|70%|GM-US
+  - 🇺🇸US_134|4.5MB/s|13%|GM-US
+  - 🇺🇸US_135|5.1MB/s|64%|GM-US
+  - 🇺🇸US_136|5.2MB/s|59%|GM-US
+  - 🇺🇸US_137|2.7MB/s|76%|GM-US
+  - 🇺🇸US_138|4.7MB/s|0%|GM-US
+  - 🇺🇸US_139|1.3MB/s|3%|GM-US
+  - 🇺🇸US_140|13.4MB/s|56%|GM-US
+  - 🇺🇸US_141|14.6MB/s|97%|GM-US
+  - 🇺🇸US_142|4.6MB/s|65%|GM-US
+  - 🇺🇸US_143|1.7MB/s|13%|GM-US
+  - 🇺🇸US_144|22.0MB/s|35%|GM-US
+  - 🇺🇸US_145|12.5MB/s|76%|GM-US
+  - 🇺🇸US_146|4.7MB/s|59%|GM-US
+  - 🇺🇸US_147|16.6MB/s|67%|GM-US
+  - 🇺🇸US_148|1.0MB/s|13%|GM-US
+  - 🇺🇸US_149|4.2MB/s|84%|GM-US
+  - 🇺🇸US_150|7.6MB/s|86%|GM-US
+  - 🇺🇸US_151|6.1MB/s|78%|GM-US
+  - 🇺🇸US_152|2.7MB/s|13%|GM-US
+  - 🇺🇸US_153|5.2MB/s|53%|GM-US
+  - 🇺🇸US_154|4.7MB/s|85%|GM-US
+  - 🇺🇸US_155|5.9MB/s|22%|GM-US
+  - 🇺🇸US_156|17.3MB/s|67%|GM-US
+  - 🇺🇸US_157|4.5MB/s|53%|GM-US
+  - 🇺🇸US_158|3.1MB/s|13%|GM-US
+  - 🇺🇸US_159|6.8MB/s|50%|GM-ID
+  - 🇺🇸US_160|5.1MB/s|100%|GM-EG
+  - 🇺🇸US_161|2.6MB/s|0%|GM-US
+  - 🇺🇸US_162|1.4MB/s|44%|GM-US
+  - 🇺🇸US_163|5.0MB/s|64%|GM-US
+  - 🇺🇸US_164|2.9MB/s|13%|GM-US
+  - 🇺🇸US_165|2.9MB/s|47%|GM-US|R002-260618
+  - 🇺🇸US_166|5.6MB/s|0%|GM-US|R002-260618
+  - 🇺🇸US_167|17.6MB/s|57%|GM-US|P002-260618
+  - 🇺🇸US_168|1.9MB/s|68%|GM-US
+  - 🇺🇸US_169|4.3MB/s|100%|GM-US
+  - 🇺🇸US_170|5.4MB/s|100%|GM-EG
+  - 🇺🇸US_171|5.7MB/s|0%|GM-US
+  - 🇺🇸US_172|17.1MB/s|13%|GM-US
+  - 🇺🇸US_173|1.8MB/s|53%|GM-US
+- name: 🤖 Gemini-专属专线
   type: fallback
   url: https://www.gstatic.com/generate_204
   interval: 60
-  proxies: *id001
+  proxies:
+  - 🇺🇸 美国-自动优选
+  - 🇺🇸US_111|6.6MB/s|50%|GM-US
+  - 🇺🇸US_112|6.5MB/s|50%|GM-US
+  - 🇺🇸US_113|18.1MB/s|41%|GM-US
+  - 🇺🇸US_114|17.5MB/s|50%|GM-US
+  - 🇺🇸US_115|2.5MB/s|100%|GM-US
+  - 🇺🇸US_116|3.9MB/s|3%|GM-US
+  - 🇺🇸US_117|15.2MB/s|80%|GM-US
+  - 🇺🇸US_118|2.5MB/s|64%|GM-US
+  - 🇺🇸US_119|2.6MB/s|50%|GM-US
+  - 🇺🇸US_120|6.3MB/s|13%|GM-US
+  - 🇺🇸US_121|5.2MB/s|13%|GM-US
+  - 🇺🇸US_122|5.5MB/s|67%|GM-US
+  - 🇺🇸US_123|5.5MB/s|68%|GM-US
+  - 🇺🇸US_124|5.8MB/s|89%|GM-US
+  - 🇺🇸US_125|5.2MB/s|77%|GM-US
+  - 🇺🇸US_126|4.8MB/s|90%|GM-US
+  - 🇺🇸US_127|5.1MB/s|13%|GM-US
+  - 🇺🇸US_128|4.0MB/s|47%|GM-US
+  - 🇺🇸US_129|2.9MB/s|13%|GM-US
+  - 🇺🇸US_130|4.1MB/s|60%|GM-US
+  - 🇺🇸US_131|12.0MB/s|71%|GM-US
+  - 🇺🇸US_132|5.4MB/s|89%|GM-US
+  - 🇺🇸US_133|4.9MB/s|70%|GM-US
+  - 🇺🇸US_134|4.5MB/s|13%|GM-US
+  - 🇺🇸US_135|5.1MB/s|64%|GM-US
+  - 🇺🇸US_136|5.2MB/s|59%|GM-US
+  - 🇺🇸US_137|2.7MB/s|76%|GM-US
+  - 🇺🇸US_138|4.7MB/s|0%|GM-US
+  - 🇺🇸US_139|1.3MB/s|3%|GM-US
+  - 🇺🇸US_140|13.4MB/s|56%|GM-US
+  - 🇺🇸US_141|14.6MB/s|97%|GM-US
+  - 🇺🇸US_142|4.6MB/s|65%|GM-US
+  - 🇺🇸US_143|1.7MB/s|13%|GM-US
+  - 🇺🇸US_144|22.0MB/s|35%|GM-US
+  - 🇺🇸US_145|12.5MB/s|76%|GM-US
+  - 🇺🇸US_146|4.7MB/s|59%|GM-US
+  - 🇺🇸US_147|16.6MB/s|67%|GM-US
+  - 🇺🇸US_148|1.0MB/s|13%|GM-US
+  - 🇺🇸US_149|4.2MB/s|84%|GM-US
+  - 🇺🇸US_150|7.6MB/s|86%|GM-US
+  - 🇺🇸US_151|6.1MB/s|78%|GM-US
+  - 🇺🇸US_152|2.7MB/s|13%|GM-US
+  - 🇺🇸US_153|5.2MB/s|53%|GM-US
+  - 🇺🇸US_154|4.7MB/s|85%|GM-US
+  - 🇺🇸US_155|5.9MB/s|22%|GM-US
+  - 🇺🇸US_156|17.3MB/s|67%|GM-US
+  - 🇺🇸US_157|4.5MB/s|53%|GM-US
+  - 🇺🇸US_158|3.1MB/s|13%|GM-US
+  - 🇺🇸US_159|6.8MB/s|50%|GM-ID
+  - 🇺🇸US_160|5.1MB/s|100%|GM-EG
+  - 🇺🇸US_161|2.6MB/s|0%|GM-US
+  - 🇺🇸US_162|1.4MB/s|44%|GM-US
+  - 🇺🇸US_163|5.0MB/s|64%|GM-US
+  - 🇺🇸US_164|2.9MB/s|13%|GM-US
+  - 🇺🇸US_165|2.9MB/s|47%|GM-US|R002-260618
+  - 🇺🇸US_166|5.6MB/s|0%|GM-US|R002-260618
+  - 🇺🇸US_167|17.6MB/s|57%|GM-US|P002-260618
+  - 🇺🇸US_168|1.9MB/s|68%|GM-US
+  - 🇺🇸US_169|4.3MB/s|100%|GM-US
+  - 🇺🇸US_170|5.4MB/s|100%|GM-EG
+  - 🇺🇸US_171|5.7MB/s|0%|GM-US
+  - 🇺🇸US_172|17.1MB/s|13%|GM-US
+  - 🇺🇸US_173|1.8MB/s|53%|GM-US
 rules:
-- DOMAIN-KEYWORD,antigravity,Gemini专线
-- GEOSITE,google-deepmind,Gemini专线
-- DOMAIN-SUFFIX,gemini.google.com,Gemini专线
-- DOMAIN-SUFFIX,aistudio.google.com,Gemini专线
-- DOMAIN-SUFFIX,generativelanguage.googleapis.com,Gemini专线
-- DOMAIN-SUFFIX,alkalimakersuite-pa.clients6.google.com,Gemini专线
+- DOMAIN-KEYWORD,antigravity,🤖 Gemini-专属专线
+- GEOSITE,google-deepmind,🤖 Gemini-专属专线
+- DOMAIN-SUFFIX,gemini.google.com,🤖 Gemini-专属专线
+- DOMAIN-SUFFIX,aistudio.google.com,🤖 Gemini-专属专线
+- DOMAIN-SUFFIX,generativelanguage.googleapis.com,🤖 Gemini-专属专线
+- DOMAIN-SUFFIX,alkalimakersuite-pa.clients6.google.com,🤖 Gemini-专属专线
 - GEOIP,lan,DIRECT
 - GEOIP,CN,DIRECT
 - MATCH,节点选择
