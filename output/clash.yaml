@@ -769,18 +769,6 @@ proxies:
   up: ''
 - down: ''
   fingerprint: ''
-  name: 🇭🇰HK_33|1.7MB/s|0%
-  obfs: ''
-  obfs-password: ''
-  password: H7mP2xY9kJ4nQ8wR5tF6vB3z
-  port: '443'
-  server: 202.146.222.29
-  skip-cert-verify: true
-  sni: "https://t.me/wangcai2ð\x9F\x87ð\x9F\x87"
-  type: hysteria2
-  up: ''
-- down: ''
-  fingerprint: ''
   name: 🇭🇰HK_34|1.8MB/s|0%
   obfs: ''
   obfs-password: ''
@@ -842,18 +830,6 @@ proxies:
   udp: true
   uuid: 48ff2b70-e180-582f-8866-d9a2edeed5f5
   xudp: true
-- down: ''
-  fingerprint: ''
-  name: 🇭🇰HK_36|1.7MB/s|0%
-  obfs: ''
-  obfs-password: ''
-  password: H7mP2xY9kJ4nQ8wR5tF6vB3z
-  port: '443'
-  server: 202.146.222.29
-  skip-cert-verify: true
-  sni: "https://t.me/wangcai2ð\x9F\x87¨ð\x9F\x87³"
-  type: hysteria2
-  up: ''
 - down: ''
   fingerprint: ''
   name: 🇭🇰HK_37|1.3MB/s|0%
@@ -1250,13 +1226,11 @@ proxy-groups:
   - 🇭🇰HK_30|2.5MB/s|0%
   - 🇭🇰HK_31|2.5MB/s|0%
   - 🇭🇰HK_32|1.8MB/s|0%
-  - 🇭🇰HK_33|1.7MB/s|0%
   - 🇭🇰HK_34|1.8MB/s|0%
   - 🇭🇰HK_35|2.5MB/s|0%
   - 🇺🇸US_98|5.3MB/s|50%|GM-US
   - 🇺🇸US_99|53.8MB/s|58%|GM-US
   - 🇺🇸US_100|8.2MB/s|73%|GM-US
-  - 🇭🇰HK_36|1.7MB/s|0%
   - 🇭🇰HK_37|1.3MB/s|0%
   - 🇸🇬SG_20|1.3MB/s|13%|GM-DE
   - 🇬🇧GB_10|1.7MB/s|0%|GM-GB
@@ -1358,13 +1332,11 @@ proxy-groups:
   - 🇭🇰HK_30|2.5MB/s|0%
   - 🇭🇰HK_31|2.5MB/s|0%
   - 🇭🇰HK_32|1.8MB/s|0%
-  - 🇭🇰HK_33|1.7MB/s|0%
   - 🇭🇰HK_34|1.8MB/s|0%
   - 🇭🇰HK_35|2.5MB/s|0%
   - 🇺🇸US_98|5.3MB/s|50%|GM-US
   - 🇺🇸US_99|53.8MB/s|58%|GM-US
   - 🇺🇸US_100|8.2MB/s|73%|GM-US
-  - 🇭🇰HK_36|1.7MB/s|0%
   - 🇭🇰HK_37|1.3MB/s|0%
   - 🇸🇬SG_20|1.3MB/s|13%|GM-DE
   - 🇬🇧GB_10|1.7MB/s|0%|GM-GB
@@ -1486,10 +1458,8 @@ proxy-groups:
   - 🇭🇰HK_30|2.5MB/s|0%
   - 🇭🇰HK_31|2.5MB/s|0%
   - 🇭🇰HK_32|1.8MB/s|0%
-  - 🇭🇰HK_33|1.7MB/s|0%
   - 🇭🇰HK_34|1.8MB/s|0%
   - 🇭🇰HK_35|2.5MB/s|0%
-  - 🇭🇰HK_36|1.7MB/s|0%
   - 🇭🇰HK_37|1.3MB/s|0%
   - 🇭🇰HK_38|2.5MB/s|0%
   - 🇭🇰HK_39|1.6MB/s|0%|GM-JP
