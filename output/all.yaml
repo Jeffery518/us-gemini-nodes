@@ -16,16 +16,6 @@ proxies:
   udp: true
   uuid: cda0862a-0f87-4be9-8ed8-1d0c9e382839
   x-toolall-mihomo: true
-- name: 🇸🇬SG_9|1.3MB/s|61%|GM-GB
-  password: ''
-  port: 9443
-  server: 149.88.99.209
-  skip-cert-verify: true
-  tls: true
-  type: http
-  udp: true
-  username: ''
-  x-toolall-mihomo: true
 - name: 🇲🇽MX_3|1.7MB/s|0%|GM-US
   password: lcFa8dTH
   port: 62000
@@ -34,15 +24,6 @@ proxies:
   type: socks5
   udp: true
   username: QyVdo5ks
-- name: 🇸🇬SG_10|1.3MB/s|0%
-  password: ''
-  port: 8443
-  server: 66.42.49.247
-  skip-cert-verify: true
-  tls: true
-  type: http
-  udp: true
-  username: ''
 - cipher: aes-256-gcm
   name: 🇬🇧GB_7|4.5MB/s|89%
   password: ZRpgaBeGxtENIXgvhpkZBKz9GnWRS2dYcx9O+a2iwN4=
@@ -80,14 +61,6 @@ proxies:
     headers:
       Host: vlsovip.1d.mom
     path: /fp=unsafe
-- name: 🇺🇸US_88|4.9MB/s|80%|GM-US
-  password: 'null'
-  port: 9002
-  server: 138.199.35.220
-  skip-cert-verify: true
-  tls: true
-  type: http
-  username: 'null'
 - ip: 172.16.0.2/32
   ipv6: 2606:4700:110:8e4e:939b:b987:39aa:c46c/128
   mtu: 1280

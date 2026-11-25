@@ -46,7 +46,10 @@ def is_clean_string(s: str) -> bool:
     return True
 
 def sanitize_proxy(proxy: dict) -> dict | None:
-    """过滤并深度清洗单个代理节点中的非法字符"""
+    """过滤并深度清洗单个代理节点中的非法字符，同时剔除不支持 UDP 的纯 HTTP 代理"""
+    if str(proxy.get("type", "")).lower() == "http":
+        # 纯 HTTP 代理不支持 UDP，在 TUN 模式下会导致 QUIC/UDP 流量直接回退为 DIRECT 暴露真实 IP
+        return None
     clean_p = {}
     for k, v in proxy.items():
         if isinstance(v, str):
@@ -215,6 +218,7 @@ def main():
         "proxies": proxies,
         "proxy-groups": proxy_groups,
         "rules": [
+            "AND,((NETWORK,UDP),(DST-PORT,443)),REJECT",
             "DOMAIN-KEYWORD,antigravity,🤖 Gemini-专属专线",
             "GEOSITE,google-deepmind,🤖 Gemini-专属专线",
             "DOMAIN-SUFFIX,gemini.google.com,🤖 Gemini-专属专线",

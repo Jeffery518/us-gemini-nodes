@@ -21,16 +21,6 @@ proxies:
   udp: true
   uuid: cda0862a-0f87-4be9-8ed8-1d0c9e382839
   x-toolall-mihomo: true
-- name: 🇸🇬SG_9|1.3MB/s|61%|GM-GB
-  password: ''
-  port: 9443
-  server: 149.88.99.209
-  skip-cert-verify: true
-  tls: true
-  type: http
-  udp: true
-  username: ''
-  x-toolall-mihomo: true
 - name: 🇲🇽MX_3|1.7MB/s|0%|GM-US
   password: lcFa8dTH
   port: 62000
@@ -39,15 +29,6 @@ proxies:
   type: socks5
   udp: true
   username: QyVdo5ks
-- name: 🇸🇬SG_10|1.3MB/s|0%
-  password: ''
-  port: 8443
-  server: 66.42.49.247
-  skip-cert-verify: true
-  tls: true
-  type: http
-  udp: true
-  username: ''
 - cipher: aes-256-gcm
   name: 🇬🇧GB_7|4.5MB/s|89%
   password: ZRpgaBeGxtENIXgvhpkZBKz9GnWRS2dYcx9O+a2iwN4=
@@ -85,14 +66,6 @@ proxies:
     headers:
       Host: vlsovip.1d.mom
     path: /fp=unsafe
-- name: 🇺🇸US_88|4.9MB/s|80%|GM-US
-  password: 'null'
-  port: 9002
-  server: 138.199.35.220
-  skip-cert-verify: true
-  tls: true
-  type: http
-  username: 'null'
 - ip: 172.16.0.2/32
   ipv6: 2606:4700:110:8e4e:939b:b987:39aa:c46c/128
   mtu: 1280
@@ -1360,7 +1333,6 @@ proxy-groups:
   proxies:
   - 🚀 全球自动优选
   - 🇺🇸 美国-自动优选
-  - 🇸🇬 新加坡-自动优选
   - 🇯🇵 日本-自动优选
   - 🇭🇰 香港-自动优选
   - 🇹🇼 台湾-自动优选
@@ -1370,14 +1342,11 @@ proxy-groups:
   - 🤖 Gemini-专属专线
   - DIRECT
   - 🇳🇱NL_35|1.4MB/s|0%|GM-US
-  - 🇸🇬SG_9|1.3MB/s|61%|GM-GB
   - 🇲🇽MX_3|1.7MB/s|0%|GM-US
-  - 🇸🇬SG_10|1.3MB/s|0%
   - 🇬🇧GB_7|4.5MB/s|89%
   - 🇳🇱NL_36|1.7MB/s|100%|GM-US
   - 🇳🇱NL_37|2.9MB/s|0%|GM-US
   - 🇺🇸US_87|6.4MB/s|10%|GM-US
-  - 🇺🇸US_88|4.9MB/s|80%|GM-US
   - 🇺🇸US_89|22.6MB/s|10%|GM-US
   - 🇺🇸US_90|21.7MB/s|10%|GM-US
   - 🇺🇸US_91|2.6MB/s|1%|GM-US
@@ -1480,14 +1449,11 @@ proxy-groups:
   tolerance: 50
   proxies:
   - 🇳🇱NL_35|1.4MB/s|0%|GM-US
-  - 🇸🇬SG_9|1.3MB/s|61%|GM-GB
   - 🇲🇽MX_3|1.7MB/s|0%|GM-US
-  - 🇸🇬SG_10|1.3MB/s|0%
   - 🇬🇧GB_7|4.5MB/s|89%
   - 🇳🇱NL_36|1.7MB/s|100%|GM-US
   - 🇳🇱NL_37|2.9MB/s|0%|GM-US
   - 🇺🇸US_87|6.4MB/s|10%|GM-US
-  - 🇺🇸US_88|4.9MB/s|80%|GM-US
   - 🇺🇸US_89|22.6MB/s|10%|GM-US
   - 🇺🇸US_90|21.7MB/s|10%|GM-US
   - 🇺🇸US_91|2.6MB/s|1%|GM-US
@@ -1589,7 +1555,6 @@ proxy-groups:
   interval: 60
   tolerance: 50
   proxies:
-  - 🇺🇸US_88|4.9MB/s|80%|GM-US
   - 🇺🇸US_93|3.0MB/s|100%
   - 🇺🇸US_94|34.3MB/s|11%
   - 🇺🇸US_96|30.5MB/s|85%|GM-US
@@ -1630,14 +1595,6 @@ proxy-groups:
   - 🇺🇸US_142|3.0MB/s|69%|GM-US
   - 🇺🇸US_144|5.0MB/s|10%|GM-US
   - 🇺🇸US_152|7.6MB/s|10%|GM-US
-- name: 🇸🇬 新加坡-自动优选
-  type: url-test
-  url: https://www.gstatic.com/generate_204
-  interval: 60
-  tolerance: 50
-  proxies:
-  - 🇸🇬SG_9|1.3MB/s|61%|GM-GB
-  - 🇸🇬SG_10|1.3MB/s|0%
 - name: 🇯🇵 日本-自动优选
   type: url-test
   url: https://www.gstatic.com/generate_204
@@ -1733,7 +1690,6 @@ proxy-groups:
   interval: 60
   proxies:
   - 🇺🇸 美国-自动优选
-  - 🇺🇸US_88|4.9MB/s|80%|GM-US
   - 🇺🇸US_96|30.5MB/s|85%|GM-US
   - 🇺🇸US_97|5.2MB/s|84%|GM-US
   - 🇺🇸US_100|6.2MB/s|57%|GM-US
@@ -1762,6 +1718,7 @@ proxy-groups:
   - 🇺🇸US_144|5.0MB/s|10%|GM-US
   - 🇺🇸US_152|7.6MB/s|10%|GM-US
 rules:
+- AND,((NETWORK,UDP),(DST-PORT,443)),REJECT
 - DOMAIN-KEYWORD,antigravity,🤖 Gemini-专属专线
 - GEOSITE,google-deepmind,🤖 Gemini-专属专线
 - DOMAIN-SUFFIX,gemini.google.com,🤖 Gemini-专属专线
