@@ -124,17 +124,15 @@ def main():
 
     proxy_names = [p["name"] for p in proxies]
 
-    # 识别并隔离 Anycast 任播节点，防止其在国内使用时出口漂移到新加坡/香港
+    # 识别并标记 Anycast 任播节点（用于兜底，防止优先选中导致地区漂移）
     anycast_names = {p["name"] for p in proxies if is_anycast_node(p)}
-    anycast_nodes = [n for n in proxy_names if n in anycast_names]
     fixed_proxy_names = [n for n in proxy_names if n not in anycast_names]
 
-    # 精准按国家前缀分类（仅使用固定出口 IP 的节点，杜绝 Anycast 漂移）
-    us_nodes = [n for n in fixed_proxy_names if get_node_region(n) == "US"]
-    # 兜底：若极端情况下固定 US 节点为空，才退回全部 US 节点
-    if not us_nodes:
-        us_nodes = [n for n in proxy_names if get_node_region(n) == "US"]
+    # 美国节点分为两层：1) 固定美国原生 IP（首选）；2) 美区标签的 Anycast 任播节点（兜底）
+    fixed_us_nodes = [n for n in fixed_proxy_names if get_node_region(n) == "US"]
+    anycast_us_nodes = [n for n in proxy_names if n in anycast_names and get_node_region(n) == "US"]
 
+    # 其他国家/地区仅使用固定出口 IP 的节点
     sg_nodes = [n for n in fixed_proxy_names if get_node_region(n) == "SG"]
     jp_nodes = [n for n in fixed_proxy_names if get_node_region(n) == "JP"]
     hk_nodes = [n for n in fixed_proxy_names if get_node_region(n) == "HK"]
@@ -142,9 +140,9 @@ def main():
     uk_nodes = [n for n in fixed_proxy_names if get_node_region(n) == "UK"]
     kr_nodes = [n for n in fixed_proxy_names if get_node_region(n) == "KR"]
 
-    # Gemini 专属节点：100% 纯美国固定 IP 且通过 Gemini 解锁认证的节点
-    gemini_us_nodes = [n for n in us_nodes if "GM" in n]
-    gemini_final_nodes = gemini_us_nodes if gemini_us_nodes else us_nodes
+    # Gemini 专属节点：同样遵循“美区原生 GM 优先，无可用时才用美区任播 GM 兜底”
+    fixed_gemini_nodes = [n for n in fixed_us_nodes if "GM" in n] or list(fixed_us_nodes)
+    anycast_gemini_nodes = [n for n in anycast_us_nodes if "GM" in n] or list(anycast_us_nodes)
 
     auto_groups = []
 
@@ -158,19 +156,51 @@ def main():
         "proxies": list(proxy_names),
     })
 
-    # 各国自动优选组（100% 纯净固定 IP 该国节点）
+    # 美国分层优选：原生固定 IP 优先 -> 任播兜底
+    us_tier_groups = []
+    if fixed_us_nodes:
+        auto_groups.append({
+            "name": "🇺🇸 美国-原生优选",
+            "type": "url-test",
+            "url": "https://www.gstatic.com/generate_204",
+            "interval": 60,
+            "tolerance": 50,
+            "proxies": list(fixed_us_nodes),
+        })
+        us_tier_groups.append("🇺🇸 美国-原生优选")
+
+    if anycast_us_nodes:
+        auto_groups.append({
+            "name": "🇺🇸 美国-任播兜底",
+            "type": "url-test",
+            "url": "https://www.gstatic.com/generate_204",
+            "interval": 60,
+            "tolerance": 50,
+            "proxies": list(anycast_us_nodes),
+        })
+        us_tier_groups.append("🇺🇸 美国-任播兜底")
+
+    available_country_group_names = []
+    if us_tier_groups:
+        auto_groups.append({
+            "name": "🇺🇸 美国-自动优选",
+            "type": "fallback",
+            "url": "https://www.gstatic.com/generate_204",
+            "interval": 60,
+            "proxies": us_tier_groups,
+        })
+        available_country_group_names.append("🇺🇸 美国-自动优选")
+
+    # 其他国家自动优选组（100% 纯净固定 IP 该国节点）
     country_definitions = [
-        ("🇺🇸 美国-自动优选", us_nodes),
         ("🇸🇬 新加坡-自动优选", sg_nodes),
         ("🇯🇵 日本-自动优选", jp_nodes),
         ("🇭🇰 香港-自动优选", hk_nodes),
         ("🇹🇼 台湾-自动优选", tw_nodes),
         ("🇬🇧 英国-自动优选", uk_nodes),
         ("🇰🇷 韩国-自动优选", kr_nodes),
-        ("☁️ CF-任播节点(就近)", anycast_nodes),
     ]
 
-    available_country_group_names = []
     for group_name, nodes in country_definitions:
         if nodes:
             auto_groups.append({
@@ -183,13 +213,36 @@ def main():
             })
             available_country_group_names.append(group_name)
 
-    # Gemini 专属专线：100% 纯美区 Gemini 解锁节点
+    # Gemini 分层优选：美区原生 Gemini 优先 -> 美区任播 Gemini 兜底
+    gemini_tier_groups = []
+    if fixed_gemini_nodes:
+        auto_groups.append({
+            "name": "🤖 Gemini-原生优选",
+            "type": "url-test",
+            "url": "https://www.gstatic.com/generate_204",
+            "interval": 60,
+            "tolerance": 50,
+            "proxies": list(fixed_gemini_nodes),
+        })
+        gemini_tier_groups.append("🤖 Gemini-原生优选")
+
+    if anycast_gemini_nodes:
+        auto_groups.append({
+            "name": "🤖 Gemini-任播兜底",
+            "type": "url-test",
+            "url": "https://www.gstatic.com/generate_204",
+            "interval": 60,
+            "tolerance": 50,
+            "proxies": list(anycast_gemini_nodes),
+        })
+        gemini_tier_groups.append("🤖 Gemini-任播兜底")
+
     gemini_group = {
         "name": "🤖 Gemini-专属专线",
         "type": "fallback",
         "url": "https://www.gstatic.com/generate_204",
         "interval": 60,
-        "proxies": ["🇺🇸 美国-自动优选"] + list(gemini_final_nodes),
+        "proxies": gemini_tier_groups if gemini_tier_groups else list(proxy_names),
     }
 
     # 顶层主控制组：节点选择
@@ -235,7 +288,7 @@ def main():
         yaml.dump(full_config, f, allow_unicode=True, sort_keys=False)
 
     print(f"Successfully generated output/clash.yaml with {len(proxy_names)} clean nodes!")
-    print(f"Pure US: {len(us_nodes)} (Gemini: {len(gemini_us_nodes)}), SG: {len(sg_nodes)}, JP: {len(jp_nodes)}, HK: {len(hk_nodes)}, TW: {len(tw_nodes)}, UK: {len(uk_nodes)}, KR: {len(kr_nodes)}")
+    print(f"US Fixed: {len(fixed_us_nodes)} + Anycast Fallback: {len(anycast_us_nodes)} | Gemini Fixed: {len(fixed_gemini_nodes)} + Anycast Fallback: {len(anycast_gemini_nodes)} | SG: {len(sg_nodes)}, JP: {len(jp_nodes)}, HK: {len(hk_nodes)}, TW: {len(tw_nodes)}, UK: {len(uk_nodes)}, KR: {len(kr_nodes)}")
 
 if __name__ == "__main__":
     main()
