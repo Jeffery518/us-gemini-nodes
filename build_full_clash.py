@@ -1,6 +1,40 @@
+import ipaddress
 import re
 import sys
 import yaml
+
+# Cloudflare / Anycast 任播网段（GitHub 美区测速会显示为美国，但国内直连会就近分配到新加坡/香港/日本）
+ANYCAST_CIDRS = [
+    "173.245.48.0/20", "103.21.244.0/22", "103.22.200.0/22", "103.31.4.0/22",
+    "141.101.64.0/18", "108.162.192.0/18", "190.93.240.0/20", "188.114.96.0/20",
+    "197.234.240.0/22", "198.41.128.0/17", "162.158.0.0/15", "104.16.0.0/13",
+    "104.24.0.0/14", "172.64.0.0/13", "131.0.72.0/22", "8.6.112.0/24",
+    "8.34.208.0/20",
+]
+ANYCAST_NETWORKS = [ipaddress.ip_network(cidr) for cidr in ANYCAST_CIDRS]
+ANYCAST_KEYWORDS = ("pages.dev", "workers.dev", "cloudflare.com", "speedtest.net", "visa.com", "csgo.com")
+
+def is_anycast_node(proxy: dict) -> bool:
+    """判断节点是否属于 Cloudflare / WARP 等 Anycast 任播节点（出口地区随访问者位置漂移）"""
+    if proxy.get("type") == "wireguard":
+        return True
+
+    server = str(proxy.get("server", "")).lower()
+    sni = str(proxy.get("sni") or proxy.get("servername") or "").lower()
+    host = ""
+    ws_opts = proxy.get("ws-opts")
+    if isinstance(ws_opts, dict) and isinstance(ws_opts.get("headers"), dict):
+        host = str(ws_opts["headers"].get("Host", "")).lower()
+
+    for kw in ANYCAST_KEYWORDS:
+        if kw in server or kw in sni or kw in host:
+            return True
+
+    try:
+        ip = ipaddress.ip_address(server)
+        return any(ip in net for net in ANYCAST_NETWORKS)
+    except ValueError:
+        return False
 
 def is_clean_string(s: str) -> bool:
     """检查字符串是否含有 C0/C1 控制字符或非法字符（Go YAML 严格禁止）"""
@@ -87,16 +121,25 @@ def main():
 
     proxy_names = [p["name"] for p in proxies]
 
-    # 精准按国家前缀分类，严防尾部 GM-US 标签串味
-    us_nodes = [n for n in proxy_names if get_node_region(n) == "US"]
-    sg_nodes = [n for n in proxy_names if get_node_region(n) == "SG"]
-    jp_nodes = [n for n in proxy_names if get_node_region(n) == "JP"]
-    hk_nodes = [n for n in proxy_names if get_node_region(n) == "HK"]
-    tw_nodes = [n for n in proxy_names if get_node_region(n) == "TW"]
-    uk_nodes = [n for n in proxy_names if get_node_region(n) == "UK"]
-    kr_nodes = [n for n in proxy_names if get_node_region(n) == "KR"]
+    # 识别并隔离 Anycast 任播节点，防止其在国内使用时出口漂移到新加坡/香港
+    anycast_names = {p["name"] for p in proxies if is_anycast_node(p)}
+    anycast_nodes = [n for n in proxy_names if n in anycast_names]
+    fixed_proxy_names = [n for n in proxy_names if n not in anycast_names]
 
-    # Gemini 专属节点：100% 纯美国且通过 Gemini 解锁认证的节点
+    # 精准按国家前缀分类（仅使用固定出口 IP 的节点，杜绝 Anycast 漂移）
+    us_nodes = [n for n in fixed_proxy_names if get_node_region(n) == "US"]
+    # 兜底：若极端情况下固定 US 节点为空，才退回全部 US 节点
+    if not us_nodes:
+        us_nodes = [n for n in proxy_names if get_node_region(n) == "US"]
+
+    sg_nodes = [n for n in fixed_proxy_names if get_node_region(n) == "SG"]
+    jp_nodes = [n for n in fixed_proxy_names if get_node_region(n) == "JP"]
+    hk_nodes = [n for n in fixed_proxy_names if get_node_region(n) == "HK"]
+    tw_nodes = [n for n in fixed_proxy_names if get_node_region(n) == "TW"]
+    uk_nodes = [n for n in fixed_proxy_names if get_node_region(n) == "UK"]
+    kr_nodes = [n for n in fixed_proxy_names if get_node_region(n) == "KR"]
+
+    # Gemini 专属节点：100% 纯美国固定 IP 且通过 Gemini 解锁认证的节点
     gemini_us_nodes = [n for n in us_nodes if "GM" in n]
     gemini_final_nodes = gemini_us_nodes if gemini_us_nodes else us_nodes
 
@@ -112,7 +155,7 @@ def main():
         "proxies": list(proxy_names),
     })
 
-    # 各国自动优选组（100% 纯净该国节点）
+    # 各国自动优选组（100% 纯净固定 IP 该国节点）
     country_definitions = [
         ("🇺🇸 美国-自动优选", us_nodes),
         ("🇸🇬 新加坡-自动优选", sg_nodes),
@@ -121,6 +164,7 @@ def main():
         ("🇹🇼 台湾-自动优选", tw_nodes),
         ("🇬🇧 英国-自动优选", uk_nodes),
         ("🇰🇷 韩国-自动优选", kr_nodes),
+        ("☁️ CF-任播节点(就近)", anycast_nodes),
     ]
 
     available_country_group_names = []
