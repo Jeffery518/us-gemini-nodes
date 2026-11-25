@@ -35,7 +35,7 @@ sub-urls-remote:
   # 非 GitHub 聚合订阅（第三方免费机场与自建 Worker 节点）
   - "https://raw.githubusercontent.com/beck-8/sub-urls/refs/heads/main/%E9%9D%9EGITHUB.txt"
 
-# 知名度高、活跃更新的主流公开订阅直链
+# 知名度高、活跃更新的主流公开订阅直链（已清理 13 个失效 404 源，新增 12 个 2026 年活跃新源）
 sub-urls:
   # Zhuhaiuk 系列（每小时自动更新）
   - "https://raw.githubusercontent.com/zhuhaiuk/free-nodes/main/clash_config.yaml"
@@ -50,36 +50,34 @@ sub-urls:
   # peasoft 节点合集
   - "https://raw.githubusercontent.com/peasoft/NoMoreWalls/master/snippets/nodes.meta.yml"
   - "https://raw.githubusercontent.com/peasoft/NoMoreWalls/master/list.yml"
-  # Barabama 免费节点池多源
+  - "https://raw.githubusercontent.com/peasoft/NoMoreWalls/master/list.meta.yml"
+  # Barabama 免费节点池活跃源
   - "https://raw.githubusercontent.com/Barabama/FreeNodes/main/nodes/clashmeta.txt"
-  - "https://raw.githubusercontent.com/Barabama/FreeNodes/main/nodes/yudou66.txt"
-  - "https://raw.githubusercontent.com/Barabama/FreeNodes/main/nodes/ndnode.txt"
   - "https://raw.githubusercontent.com/Barabama/FreeNodes/main/nodes/nodev2ray.txt"
-  - "https://raw.githubusercontent.com/Barabama/FreeNodes/main/nodes/nodefree.txt"
-  - "https://raw.githubusercontent.com/Barabama/FreeNodes/main/nodes/v2rayshare.txt"
-  - "https://raw.githubusercontent.com/Barabama/FreeNodes/main/nodes/wenode.txt"
-  # V2RayFree 永久更新池
+  - "https://raw.githubusercontent.com/Barabama/FreeNodes/main/nodes/cfmem.yaml"
+  # mfuu/FreeProxies 新版活跃仓库
+  - "https://raw.githubusercontent.com/mfuu/FreeProxies/master/sub.yaml"
+  - "https://raw.githubusercontent.com/mfuu/FreeProxies/master/sub"
+  # xyfqzy & lanzm 每日高频自动发布新源
+  - "https://raw.githubusercontent.com/xyfqzy/free-nodes/main/docs/subscriptions/clash.yaml"
+  - "https://raw.githubusercontent.com/lanzm/MetaFetch/master/list.meta.yml"
+  # V2RayFree / Au1rxx / SnapdragonLee / Pawdroid / ermaozi
   - "https://raw.githubusercontent.com/free-nodes/v2rayfree/main/sub"
-  # Au1rxx 自动测速节点
   - "https://raw.githubusercontent.com/Au1rxx/free-vpn-subscriptions/main/output/clash.yaml"
-  # SnapdragonLee 代理节点
   - "https://raw.githubusercontent.com/SnapdragonLee/SystemProxy/master/dist/clash_config.yaml"
-  # Colatiger 节点
-  - "https://raw.githubusercontent.com/colatiger/v2ray-nodes/master/clash.yaml"
-  # Aiboboxx 每日更新
-  - "https://raw.githubusercontent.com/aiboboxx/clashfree/master/clash.yml"
-  # 日抛节点与各类常用公共池
   - "https://raw.githubusercontent.com/ripaojiedian/freenode/main/clash"
-  - "https://raw.githubusercontent.com/mianfeifq/share/main/clash.yaml"
-  - "https://raw.githubusercontent.com/mfuu/v2ray/master/clash.yaml"
   - "https://raw.githubusercontent.com/ermaozi/get_subscribe/main/subscribe/clash.yml"
+  - "https://raw.githubusercontent.com/ermaozi/get_subscribe/main/subscribe/v2ray.txt"
   - "https://raw.githubusercontent.com/Pawdroid/Free-servers/main/sub"
-  - "https://raw.githubusercontent.com/snakem982/proxypool/main/source/clash-meta.yaml"
   - "https://raw.githubusercontent.com/snakem982/proxypool/main/source/clash-meta-2.yaml"
-  - "https://raw.githubusercontent.com/ebrasha/free-v2ray-public-list/refs/heads/main/all_extracted_configs.txt"
+  # 国际高活跃聚合源（anaer / mahdibland / roosterkid / ts-sf）
+  - "https://raw.githubusercontent.com/anaer/Sub/main/clash.yaml"
+  - "https://raw.githubusercontent.com/mahdibland/V2RayAggregator/master/sub/sub_merge_yaml.yml"
+  - "https://raw.githubusercontent.com/mahdibland/ShadowsocksAggregator/master/Eternity.yml"
+  - "https://raw.githubusercontent.com/roosterkid/openproxylist/main/V2RAY_RAW.txt"
+  - "https://raw.githubusercontent.com/ts-sf/fly/main/clash"
+  # 其他活跃公共池
   - "https://raw.githubusercontent.com/SoliSpirit/v2ray-configs/main/all_configs.txt"
-  - "https://raw.githubusercontent.com/MrMohebi/xray-proxy-grabber-telegram/master/collected-proxies/clash-meta/all.yaml"
-  - "https://raw.githubusercontent.com/barry-far/V2ray-Configs/main/All_Configs_Sub.txt"
   - "https://raw.githubusercontent.com/acymz/AutoVPN/main/data/V2.txt"
   - "https://raw.githubusercontent.com/peacefish/nodefree/main/sub/proxy_cf.yaml"
   - "https://raw.githubusercontent.com/zhangkaiitugithub/passcro/main/speednodes.yaml"
