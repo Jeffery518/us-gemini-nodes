@@ -1548,11 +1548,10 @@ proxy-groups:
   - 🇺🇸US_157|2.4MB/s|10%|GM-US
   - 🇯🇵JP_12|1.4MB/s|10%|GM-JP
   - 🇺🇸US_158|25.3MB/s|10%|GM-US
-- name: 🇺🇸 美国-原生优选
-  type: url-test
+- name: 🇺🇸 美国-自动优选
+  type: fallback
   url: https://www.gstatic.com/generate_204
   interval: 60
-  tolerance: 50
   proxies:
   - 🇺🇸US_93|3.0MB/s|100%
   - 🇺🇸US_94|34.3MB/s|11%
@@ -1594,12 +1593,6 @@ proxy-groups:
   - 🇺🇸US_142|3.0MB/s|69%|GM-US
   - 🇺🇸US_144|5.0MB/s|10%|GM-US
   - 🇺🇸US_152|7.6MB/s|10%|GM-US
-- name: 🇺🇸 美国-任播兜底
-  type: url-test
-  url: https://www.gstatic.com/generate_204
-  interval: 60
-  tolerance: 50
-  proxies:
   - 🇺🇸US_87|6.4MB/s|10%|GM-US
   - 🇺🇸US_89|22.6MB/s|10%|GM-US
   - 🇺🇸US_90|21.7MB/s|10%|GM-US
@@ -1631,26 +1624,18 @@ proxy-groups:
   - 🇺🇸US_156|38.7MB/s|10%|GM-US
   - 🇺🇸US_157|2.4MB/s|10%|GM-US
   - 🇺🇸US_158|25.3MB/s|10%|GM-US
-- name: 🇺🇸 美国-自动优选
-  type: fallback
-  url: https://www.gstatic.com/generate_204
-  interval: 60
-  proxies:
-  - 🇺🇸 美国-原生优选
-  - 🇺🇸 美国-任播兜底
 - name: 🇯🇵 日本-自动优选
   type: url-test
   url: https://www.gstatic.com/generate_204
   interval: 60
-  tolerance: 50
   proxies:
   - 🇯🇵JP_10|1.6MB/s|39%|GM-US
   - 🇯🇵JP_11|1.8MB/s|4%
+  tolerance: 50
 - name: 🇭🇰 香港-自动优选
   type: url-test
   url: https://www.gstatic.com/generate_204
   interval: 60
-  tolerance: 50
   proxies:
   - 🇭🇰HK_10|1.8MB/s|0%
   - 🇭🇰HK_11|1.6MB/s|0%
@@ -1659,37 +1644,37 @@ proxy-groups:
   - 🇭🇰HK_14|1.7MB/s|0%
   - 🇭🇰HK_15|1.7MB/s|0%
   - 🇭🇰HK_16|1.8MB/s|0%
+  tolerance: 50
 - name: 🇹🇼 台湾-自动优选
   type: url-test
   url: https://www.gstatic.com/generate_204
   interval: 60
-  tolerance: 50
   proxies:
   - 🇹🇼TW_6|1.8MB/s|0%|GM-TW
   - 🇹🇼TW_7|1.8MB/s|0%|GM-TW
   - 🇹🇼TW_8|1.8MB/s|0%|GM-TW
   - 🇹🇼TW_9|2.0MB/s|0%|GM-TW
+  tolerance: 50
 - name: 🇬🇧 英国-自动优选
   type: url-test
   url: https://www.gstatic.com/generate_204
   interval: 60
-  tolerance: 50
   proxies:
   - 🇬🇧GB_7|4.5MB/s|89%
+  tolerance: 50
 - name: 🇰🇷 韩国-自动优选
   type: url-test
   url: https://www.gstatic.com/generate_204
   interval: 60
-  tolerance: 50
   proxies:
   - 🇰🇷KR_5|1.7MB/s|4%|GM-KR
   - 🇰🇷KR_6|2.5MB/s|4%|GM-KR
   - 🇰🇷KR_7|1.7MB/s|4%|GM-KR
-- name: 🤖 Gemini-原生优选
-  type: url-test
+  tolerance: 50
+- name: 🤖 Gemini-专属专线
+  type: fallback
   url: https://www.gstatic.com/generate_204
   interval: 60
-  tolerance: 50
   proxies:
   - 🇺🇸US_96|30.5MB/s|85%|GM-US
   - 🇺🇸US_97|5.2MB/s|84%|GM-US
@@ -1718,12 +1703,6 @@ proxy-groups:
   - 🇺🇸US_142|3.0MB/s|69%|GM-US
   - 🇺🇸US_144|5.0MB/s|10%|GM-US
   - 🇺🇸US_152|7.6MB/s|10%|GM-US
-- name: 🤖 Gemini-任播兜底
-  type: url-test
-  url: https://www.gstatic.com/generate_204
-  interval: 60
-  tolerance: 50
-  proxies:
   - 🇺🇸US_87|6.4MB/s|10%|GM-US
   - 🇺🇸US_89|22.6MB/s|10%|GM-US
   - 🇺🇸US_90|21.7MB/s|10%|GM-US
@@ -1755,13 +1734,6 @@ proxy-groups:
   - 🇺🇸US_156|38.7MB/s|10%|GM-US
   - 🇺🇸US_157|2.4MB/s|10%|GM-US
   - 🇺🇸US_158|25.3MB/s|10%|GM-US
-- name: 🤖 Gemini-专属专线
-  type: fallback
-  url: https://www.gstatic.com/generate_204
-  interval: 60
-  proxies:
-  - 🤖 Gemini-原生优选
-  - 🤖 Gemini-任播兜底
 rules:
 - AND,((NETWORK,UDP),(DST-PORT,443)),REJECT
 - DOMAIN-KEYWORD,antigravity,🤖 Gemini-专属专线
